@@ -20,7 +20,7 @@ class SyncQueue {
 
 		void Take(std::list<T>& list) {
 			std::unique_lock<std::mutex> locker(m_mutex);
-			m_notEmpty.wait(locker, [this]{return m_needStop || NotEmpty();});
+			m_notEmpty.wait(locker, [this]{return mNeedStop || NotEmpty();});
 			if(mNeedStop) {
 				return;
 			}
@@ -30,7 +30,7 @@ class SyncQueue {
 
 		void Take(T& t) {
 			std::unique_lock<std::mutex> locker(m_mutex);
-			m_notEmpty.wait(locker, [this]{return m_needStop || NotEmpty();});
+			m_notEmpty.wait(locker, [this]{return mNeedStop || NotEmpty();});
 			if(mNeedStop) {
 				return;
 			}
@@ -39,10 +39,10 @@ class SyncQueue {
 			m_notFull.notify_one();
 		}
 
-		void stop() {
+		void Stop() {
 			{
 				std::lock_guard<std::mutex> locker(m_mutex);
-				m_needStop = true;
+				mNeedStop = true;
 			}
 			m_notFull.notify_all();
 			m_notEmpty.notify_all();
@@ -71,25 +71,27 @@ class SyncQueue {
 		bool NotFull() const {
 			bool full = m_queue.size() >= mMaxSize;
 			if (full) {
+				cout << "缓冲区满了，需要等待" << endl;
 			}
 			return !full;
 		}
 
 		bool NotEmpty() const {
 			bool empty = m_queue.empty();
-			if (full) {
+			if (empty) {
+				cout << "缓冲区空了，需要等待。。。异步层的线程Id：" << this_thread::get_id() << endl;
 			}
 			return !empty;
 		}
 		
-		template<typename T>
+		template<typename F>
 		void Add(F&& x) {
 			std::unique_lock<std::mutex> locker(m_mutex);
-			m_notFull.wait(locker, [this]{return m_needStop || NotFull();})
-			if(m_needStop) {
+			m_notFull.wait(locker, [this]{return mNeedStop || NotFull();});
+			if(mNeedStop) {
 				return;
 			}
-			m_queue.push_back(std::forword<F>(x));
+			m_queue.push_back(std::forward<F>(x));
 			m_notEmpty.notify_one();
 		}
 
