@@ -18,7 +18,17 @@ int main() {
 		cin >> s[i].w >> s[i].v;
 		s[i].p = s[i].v/s[i].w;
 	}
-	sort(s, s+n, [](three a, three b){return a.p>b.p});
-
+	sort(s, s+n, [](three a, three b){return a.p>b.p;});
+	double sum = 0.0;
+	for (int i = 0; i < n; i++) {
+		if(m > s[i].w) {
+			m-=s[i].w;
+			sum += s[i].v;
+		} else {
+			sum += m*s[i].p;
+			break;
+		}
+	}
+	cout << sum << endl;
 	return 0;
 }
