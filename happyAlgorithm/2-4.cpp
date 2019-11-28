@@ -18,5 +18,9 @@ int main() {
 			map[i][j] = INF;
 		}
 	}
+	while(m--) {
+		cin >>u >> v >> w;
+		map[u][v] = min(map[u][v], w);
+	}
 	return 0;
 }
