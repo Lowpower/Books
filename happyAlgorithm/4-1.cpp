@@ -2,8 +2,8 @@
 
 using namespace std;
 
-void print(int i, int j) {
-}
+const int N = 1002;
+int c[N][N], b[N][N];
 
 int main() {
 	string s1, s2;
@@ -18,6 +18,14 @@ int main() {
 		c[0][j] = 0;
 	}
 	auto LCSL = [&] (){
+		for(int i = 0; i <= len1; i++) {
+			for(int j = 1; j <= len2; j++) {
+				if(s1[i-1] == s2[j-1]) {
+					c[i][j] = c[i-1][j-1] + 1;
+					b[i][j] = 1;
+				}
+			}
+		}
 	};
 	LCSL();
 	cout << c[len1][len2] << endl;
