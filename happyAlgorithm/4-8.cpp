@@ -3,8 +3,8 @@
 #include <vector>
 using namespace std;
 
-const int N = 205;                                                                                                                                                                                                             int  
-int Max[N][N];
+const int N = 205;
+int Min[N][N], Max[N][N];                                                                                                                                                                      
 
 void straight(vector<int>& a, int n) {
     for(int i = 0; i < n; i++) {
