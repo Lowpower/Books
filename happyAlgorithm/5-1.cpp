@@ -5,9 +5,17 @@ using namespace std;
 
 const int M = 105;
 double w[M], v[M];
+bool bestx[M];
 
-void Backtrack(int t) {
-
+void Backtrack(int t, int n, double W) {
+    if (t > n) {
+        for (int i = 1; i <= n; i++) {
+            bestx[j] = x[j];
+        }
+        bestp = cp;
+        return;
+    }
+    if (cw + w[t] <= W)
 }
 
 void Knapsack(double W, int n) {
@@ -25,7 +33,7 @@ void Knapsack(double W, int n) {
         cout << "bestp = " << bestp << endl;
         cout << "complete" << endl;
     }
-    Backtrack(1);
+    Backtrack(1, n, W);
 }
 
 int main() {
