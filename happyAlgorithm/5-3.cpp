@@ -23,8 +23,7 @@ int main()
     }
     int sum = 0;
     auto Backtrack = [&](int t) {
-        if (t > n)
-        {
+        if (t > n) {
             sum++;
             cout << "sum:" << sum << "  :";
             for (int i = 1; i <= m; i++)
@@ -33,7 +32,7 @@ int main()
             }
             cout << endl;
         } else {
-
+            if() {}
         }
     };
     return 0;
