@@ -1,7 +1,8 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
-const int N;
+const int N = 10;
 
 class Node {
 public:
