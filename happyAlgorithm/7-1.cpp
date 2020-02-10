@@ -25,6 +25,9 @@ int main () {
         for (int j = 1; j <= m; j++) {
             
         }
+        for (int j = 0; j <=n; j++) {
+            
+        }
     }
     return 0;
 }
