@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 using namespace std;
 int cnt = 0;
@@ -15,13 +16,15 @@ void merge(vector<int>& A, int n, int left, int mid, int right) {
     for (int i = 0; i < n2; i++) {
         R.push_back(A[mid + i]);
     }
-    int i = 0, j = 0;
+    L.push_back(INT_MAX);
+    R.push_back(INT_MAX);
+    int l = 0, r = 0;
     for (int k = left; k < right; k++) {
         cnt++;
-        if(L[i] <= R[j]) {
-            A[k] = L[i++];
+        if(L[l] <= R[r]) {
+            A[k] = L[l++];
         } else {
-            A[k] = R[j++];
+            A[k] = R[r++];
         }
     }
 }
@@ -52,6 +55,7 @@ int main() {
         }
         cout << A[i];
     }
+    cout << endl;
     cout << cnt << endl;
     return 0;
 }
