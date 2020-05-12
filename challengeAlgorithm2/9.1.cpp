@@ -68,7 +68,7 @@ int main() {
             inorder(root);
             cout << endl;
             preorder(root);
-            cout << endl
+            cout << endl;
         }
     }
     return 0;
