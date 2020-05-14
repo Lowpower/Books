@@ -35,6 +35,17 @@ int main() {
             v.emplace_back(mouse);
         }
         sort(v.begin(), v.end(), cmp);
+        double sum = 0;
+        for (int i = 0; i < v.size(); i++) {
+            if(n > v[i].F) {
+                sum += v[i].J;
+                n-=v[i].F;
+            } else {
+                sum += n * v[i].a;
+                break;
+            }
+        }
+        printf("%.3lf\n", sum);
     }
     return 0;
 }
