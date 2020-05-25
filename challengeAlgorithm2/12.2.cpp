@@ -10,7 +10,7 @@ static const int BLACK = 2;
 int dis[N];
 int n, M[N][N];
 int color[N];
-int d[N], f[N], nt[N];
+int d[N], f[N], nt[N], tt;
 
 int next(int u) {
     for (int v = nt[u]; v < n; v++) {
@@ -29,20 +29,30 @@ void dfs_visit(int r) {
     stack<int> S;
     S.push(r);
     color[r] = GRAY;
+    d[r] = ++tt;
     while(!S.empty()) {
         int u = S.top();
-        int v = next(u) {
+        int v = next(u);
             if(v != -1) {
-
+                if(color[v] == WHITE) {
+                    color[v] = GRAY;
+                    d[v] = ++tt;
+                    S.push(v);
+                }
+            } else {
+                S.pop();
+                color[u] = BLACK;
+                f[u] = ++tt;
             }
-        }
     }
 }
 
 void dfs() {
     for (int i = 0; i < n; i++) {
         color[i] = WHITE;
+        nt[i] = 0;
     }
+    tt = 0;
     for (int u = 0; u < n; u++) {
         if (color[u] == WHITE) {
             dfs_visit(u);
