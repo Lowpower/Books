@@ -1,4 +1,4 @@
-#include <>
+#include <iostream>
 using namespace std;
 
 int main() {
@@ -8,5 +8,5 @@ int main() {
 	[](int elem) {
 		cout << elem << ' ';
 	});
-	cout << endl;
+	cout << "aa" << endl;
 }
