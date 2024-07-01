@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <string_view>
+#include <ranges>
 
 class control {
  private:
@@ -56,6 +58,7 @@ class checkbox : public button {
 };
 
 int main() {
+  std::cout << "GCC version: " << __GNUC__ << "." << __GNUC_MINOR__ << "." << __GNUC_PATCHLEVEL__ << std::endl;
   std::vector<std::unique_ptr<control>> controls;
   controls.emplace_back(std::make_unique<button>());
   controls.emplace_back(std::make_unique<checkbox>());
